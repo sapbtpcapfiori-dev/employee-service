@@ -1,0 +1,4 @@
+ID,employeeCode,name,email,designation,salary,status,department_ID,laptop_ID,createdAt,createdBy,modifiedAt,modifiedBy
+e1111111-1111-1111-1111-111111111111,EMP1001,Ravi Kumar,ravi.kumar@test.com,Developer,50000,ACTIVE,11111111-1111-1111-1111-111111111111,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb 
+e2222222-2222-2222-2222-222222222222,EMP1002,Sita Rao,sita.rao@test.com,Consultant,65000,ACTIVE,11111111-1111-1111-1111-111111111111, 
+e3333333-3333-3333-3333-333333333333,EMP1003,Amit Sharma,amit.sharma@test.com,Manager,90000,ACTIVE,33333333-3333-3333-3333-333333333333,

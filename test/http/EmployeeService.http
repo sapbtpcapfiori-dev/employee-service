@@ -1,0 +1,327 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### Departments
+# @name Departments_GET
+GET {{server}}/employee/Departments
+Authorization: Basic {{username}}:{{password}}
+
+
+### Departments
+# @name Departments_POST
+POST {{server}}/employee/Departments
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5",
+  "departmentCode": "e-17482886",
+  "name": "name-17482886",
+  "createdAt": "2002-03-22T00:00:00.000Z",
+  "createdBy": "createdBy.aepvq@example.com",
+  "modifiedAt": "2002-12-12T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.aepvq@example.org"
+}
+
+
+### Departments
+# @name Departments_PATCH
+PATCH {{server}}/employee/Departments/17482886-d4eb-44f5-9b91-53b5c14dffd5
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5",
+  "departmentCode": "e-17482886",
+  "name": "name-17482886",
+  "createdAt": "2002-03-22T00:00:00.000Z",
+  "createdBy": "createdBy.aepvq@example.com",
+  "modifiedAt": "2002-12-12T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.aepvq@example.org"
+}
+
+
+### Departments
+# @name Departments_DELETE
+DELETE {{server}}/employee/Departments/17482886-d4eb-44f5-9b91-53b5c14dffd5
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Employees
+# @name Employees_GET
+GET {{server}}/employee/Employees
+Authorization: Basic {{username}}:{{password}}
+
+
+### Employees
+# @name Employees_POST
+POST {{server}}/employee/Employees
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "12300748-772d-4453-a731-bf58f2f65175",
+  "employeeCode": "mployeeCode-12300748",
+ // "name": "name-12300748",
+  "email": "email-12300748@company.com",
+  "designation": "Developer",
+  "salary": 25000,
+  "status": "INACTIVE",
+  "department": {
+    "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5"
+  },
+  "laptop": {
+    "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48"
+  },
+  "skillAssignments": [
+    {
+      "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
+      "skill": {
+        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
+      },
+      "level": "BEGINNER",
+      "createdAt": "2005-10-16T00:00:00.000Z",
+      "createdBy": "createdBy.dkqzw@example.net",
+      "modifiedAt": "2018-05-13T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.dkqzw@example.org"
+    },
+    {
+      "ID": "22803117-5009-4132-b278-d0a429bcb73b",
+      "skill": {
+        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
+      },
+      "level": "ADVANCED",
+      "createdAt": "2019-11-21T00:00:00.000Z",
+      "createdBy": "createdBy.dkqzx@example.net",
+      "modifiedAt": "2003-07-02T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.dkqzx@example.com"
+    }
+  ],
+  "createdAt": "2005-06-10T00:00:00.000Z",
+  "createdBy": "createdBy.7bnbg@example.net",
+  "modifiedAt": "2003-01-11T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.7bnbg@example.org"
+}
+
+
+### Employees
+# @name Employees_PATCH
+PATCH {{server}}/employee/Employees/12300748-772d-4453-a731-bf58f2f65175
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "12300748-772d-4453-a731-bf58f2f65175",
+  "employeeCode": "mployeeCode-12300748",
+  "name": "name-12300748",
+  "email": "email-12300748",
+  "designation": "designation-12300748",
+  "salary": 5675065424.19,
+  "status": "INACTIVE",
+  "department": {
+    "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5"
+  },
+  "laptop": {
+    "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48"
+  },
+  "skillAssignments": [
+    {
+      "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
+      "skill": {
+        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
+      },
+      "level": "BEGINNER",
+      "createdAt": "2005-10-16T00:00:00.000Z",
+      "createdBy": "createdBy.dkqzw@example.net",
+      "modifiedAt": "2018-05-13T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.dkqzw@example.org"
+    },
+    {
+      "ID": "22803117-5009-4132-b278-d0a429bcb73b",
+      "skill": {
+        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
+      },
+      "level": "ADVANCED",
+      "createdAt": "2019-11-21T00:00:00.000Z",
+      "createdBy": "createdBy.dkqzx@example.net",
+      "modifiedAt": "2003-07-02T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.dkqzx@example.com"
+    }
+  ],
+  "createdAt": "2005-06-10T00:00:00.000Z",
+  "createdBy": "createdBy.7bnbg@example.net",
+  "modifiedAt": "2003-01-11T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.7bnbg@example.org"
+}
+
+
+### Employees
+# @name Employees_DELETE
+DELETE {{server}}/employee/Employees/12300748-772d-4453-a731-bf58f2f65175
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### CompanyLaptops
+# @name CompanyLaptops_GET
+GET {{server}}/employee/CompanyLaptops
+Authorization: Basic {{username}}:{{password}}
+
+
+### CompanyLaptops
+# @name CompanyLaptops_POST
+POST {{server}}/employee/CompanyLaptops
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48",
+  "serialNo": "serialNo-4205737",
+  "brand": "brand-4205737",
+  "model": "model-4205737",
+  "status": "AVAILABLE",
+  "createdAt": "2002-09-05T00:00:00.000Z",
+  "createdBy": "createdBy.2i561@example.org",
+  "modifiedAt": "2006-03-16T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.2i561@example.com"
+}
+
+
+### CompanyLaptops
+# @name CompanyLaptops_PATCH
+PATCH {{server}}/employee/CompanyLaptops/42057377-92ed-4b20-ae7a-5f4d6dbbbd48
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48",
+  "serialNo": "serialNo-4205737",
+  "brand": "brand-4205737",
+  "model": "model-4205737",
+  "status": "AVAILABLE",
+  "createdAt": "2002-09-05T00:00:00.000Z",
+  "createdBy": "createdBy.2i561@example.org",
+  "modifiedAt": "2006-03-16T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.2i561@example.com"
+}
+
+
+### CompanyLaptops
+# @name CompanyLaptops_DELETE
+DELETE {{server}}/employee/CompanyLaptops/42057377-92ed-4b20-ae7a-5f4d6dbbbd48
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### EmployeeSkillAssignments
+# @name EmployeeSkillAssignments_GET
+GET {{server}}/employee/EmployeeSkillAssignments
+Authorization: Basic {{username}}:{{password}}
+
+
+### EmployeeSkillAssignments
+# @name EmployeeSkillAssignments_POST
+POST {{server}}/employee/EmployeeSkillAssignments
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
+  "skill": {
+    "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
+  },
+  "level": "BEGINNER",
+  "createdAt": "2005-10-16T00:00:00.000Z",
+  "createdBy": "createdBy.dkqzw@example.net",
+  "modifiedAt": "2018-05-13T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.dkqzw@example.org"
+}
+
+
+### EmployeeSkillAssignments
+# @name EmployeeSkillAssignments_PATCH
+PATCH {{server}}/employee/EmployeeSkillAssignments/22803116-e471-4714-9d5d-a80d7fb51079
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
+  "skill": {
+    "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
+  },
+  "level": "BEGINNER",
+  "createdAt": "2005-10-16T00:00:00.000Z",
+  "createdBy": "createdBy.dkqzw@example.net",
+  "modifiedAt": "2018-05-13T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.dkqzw@example.org"
+}
+
+
+### EmployeeSkillAssignments
+# @name EmployeeSkillAssignments_DELETE
+DELETE {{server}}/employee/EmployeeSkillAssignments/22803116-e471-4714-9d5d-a80d7fb51079
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Skills
+# @name Skills_GET
+GET {{server}}/employee/Skills
+Authorization: Basic {{username}}:{{password}}
+
+
+### Skills
+# @name Skills_POST
+POST {{server}}/employee/Skills
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "13418272-2d44-4fe0-8094-50e2626116c0",
+  "skillCode": "skillCode-13418272",
+  "name": "name-13418272",
+  "category": "category-13418272",
+  "createdAt": "2014-07-06T00:00:00.000Z",
+  "createdBy": "createdBy.7zlls@example.org",
+  "modifiedAt": "2006-04-07T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.7zlls@example.com"
+}
+
+
+### Skills
+# @name Skills_PATCH
+PATCH {{server}}/employee/Skills/13418272-2d44-4fe0-8094-50e2626116c0
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "13418272-2d44-4fe0-8094-50e2626116c0",
+  "skillCode": "skillCode-13418272",
+  "name": "name-13418272",
+  "category": "category-13418272",
+  "createdAt": "2014-07-06T00:00:00.000Z",
+  "createdBy": "createdBy.7zlls@example.org",
+  "modifiedAt": "2006-04-07T00:00:00.000Z",
+  "modifiedBy": "modifiedBy.7zlls@example.com"
+}
+
+
+### Skills
+# @name Skills_DELETE
+DELETE {{server}}/employee/Skills/13418272-2d44-4fe0-8094-50e2626116c0
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### blockEmployee
+# @name blockEmployee_POST
+POST {{server}}/employee/blockEmployee
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "employeeID": "13751334-e0d3-4ec7-8a8e-ee24a2020267"
+}

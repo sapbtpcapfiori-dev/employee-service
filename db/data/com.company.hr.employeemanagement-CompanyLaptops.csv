@@ -1,0 +1,6 @@
+ID,serialNo,brand,model,status,createdAt,createdBy,modifiedAt,modifiedBy
+bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,LTP1001,Dell,Latitude 5420,ASSIGNED
+cccccccc-cccc-cccc-cccc-cccccccccccc,LTP1002,HP,EliteBook 840,AVAILABLE
+dddddddd-dddd-dddd-dddd-dddddddddddd,LTP1003,Lenovo,ThinkPad T14,AVAILABLE
+eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,LTP1004,Apple,MacBook Pro 14,ASSIGNED
+ffffffff-ffff-ffff-ffff-ffffffffffff,LTP1005,Dell,Precision 5570,REPAIR
