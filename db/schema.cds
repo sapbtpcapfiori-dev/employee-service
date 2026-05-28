@@ -37,7 +37,7 @@ entity CompanyLaptops : cuid, managed {
 entity Employees : cuid, managed { 
     employeeCode     : String(20); 
     name             : String(100); 
-    email            : String(100); 
+    email            : String(100) @mandatory; 
     designation      : String(60); 
     salary           : Decimal(12,2); 
     status           : EmployeeStatus default 'ACTIVE'; 

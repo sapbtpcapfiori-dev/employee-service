@@ -1,327 +1,458 @@
-@server=http://localhost:4004
-@username=alice
-@password=
+### =========================================================
+### Employee Management CAP Backend - Consolidated Test File
+### Service Base URL
+### =========================================================
+
+@baseUrl = http://localhost:4004/employee
 
 
-### Departments
-# @name Departments_GET
-GET {{server}}/employee/Departments
-Authorization: Basic {{username}}:{{password}}
+### =========================================================
+### 1. Service Document and Metadata
+### =========================================================
+
+### Service Document
+GET {{baseUrl}}
 
 
-### Departments
-# @name Departments_POST
-POST {{server}}/employee/Departments
+### Metadata
+GET {{baseUrl}}/$metadata
+
+
+### =========================================================
+### 2. Master Data Read Tests
+### =========================================================
+
+### Get all Departments
+GET {{baseUrl}}/Departments
+
+
+### Get all Company Laptops
+GET {{baseUrl}}/CompanyLaptops
+
+
+### Get all Skills
+GET {{baseUrl}}/Skills
+
+
+### Get all Employee Skill Assignments
+GET {{baseUrl}}/EmployeeSkillAssignments
+
+
+### Get all Employees
+GET {{baseUrl}}/Employees
+
+
+### =========================================================
+### 3. Read Employees with Associations
+### =========================================================
+
+### Get Employees with Department
+GET {{baseUrl}}/Employees?$expand=department
+
+
+### Get Employees with Laptop
+GET {{baseUrl}}/Employees?$expand=laptop
+
+
+### Get Employees with Skill Assignments
+GET {{baseUrl}}/Employees?$expand=skillAssignments
+
+
+### Get Employees with Skill Assignments and Skill Master Data
+GET {{baseUrl}}/Employees?$expand=skillAssignments($expand=skill)
+
+
+### Get Employees with Department, Laptop and Skills
+GET {{baseUrl}}/Employees?$expand=department,laptop,skillAssignments($expand=skill)
+
+
+### =========================================================
+### 4. Normal CRUDQ Create Employee - Validation Tests
+### This will trigger before CREATE Employees handler
+### =========================================================
+
+### Create Employee - Missing Name
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5",
-  "departmentCode": "e-17482886",
-  "name": "name-17482886",
-  "createdAt": "2002-03-22T00:00:00.000Z",
-  "createdBy": "createdBy.aepvq@example.com",
-  "modifiedAt": "2002-12-12T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.aepvq@example.org"
+  "email": "missing.name@company.com",
+  "designation": "Developer",
+  "salary": 45000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
 }
 
 
-### Departments
-# @name Departments_PATCH
-PATCH {{server}}/employee/Departments/17482886-d4eb-44f5-9b91-53b5c14dffd5
+### Create Employee - Missing Email
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5",
-  "departmentCode": "e-17482886",
-  "name": "name-17482886",
-  "createdAt": "2002-03-22T00:00:00.000Z",
-  "createdBy": "createdBy.aepvq@example.com",
-  "modifiedAt": "2002-12-12T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.aepvq@example.org"
+  "name": "Missing Email Employee",
+  "designation": "Developer",
+  "salary": 45000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
 }
 
 
-### Departments
-# @name Departments_DELETE
-DELETE {{server}}/employee/Departments/17482886-d4eb-44f5-9b91-53b5c14dffd5
+### Create Employee - Invalid Non Company Email
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
-
-
-### Employees
-# @name Employees_GET
-GET {{server}}/employee/Employees
-Authorization: Basic {{username}}:{{password}}
-
-
-### Employees
-# @name Employees_POST
-POST {{server}}/employee/Employees
-Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "12300748-772d-4453-a731-bf58f2f65175",
-  "employeeCode": "mployeeCode-12300748",
- // "name": "name-12300748",
-  "email": "email-12300748@company.com",
+  "name": "Invalid Email Employee",
+  "email": "invalid.email@gmail.com",
+  "designation": "Developer",
+  "salary": 45000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Create Employee - Missing Designation
+POST {{baseUrl}}/Employees
+Content-Type: application/json
+
+{
+  "name": "Missing Designation Employee",
+  "email": "missing.designation@company.com",
+  "salary": 45000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Create Employee - Missing Salary
+POST {{baseUrl}}/Employees
+Content-Type: application/json
+
+{
+  "name": "Missing Salary Employee",
+  "email": "missing.salary@company.com",
+  "designation": "Developer",
+  "department_ID": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Create Employee - Developer Salary Less Than 30000
+POST {{baseUrl}}/Employees
+Content-Type: application/json
+
+{
+  "name": "Low Salary Developer",
+  "email": "low.salary.developer@company.com",
   "designation": "Developer",
   "salary": 25000,
-  "status": "INACTIVE",
-  "department": {
-    "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5"
-  },
-  "laptop": {
-    "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48"
-  },
-  "skillAssignments": [
-    {
-      "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
-      "skill": {
-        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
-      },
-      "level": "BEGINNER",
-      "createdAt": "2005-10-16T00:00:00.000Z",
-      "createdBy": "createdBy.dkqzw@example.net",
-      "modifiedAt": "2018-05-13T00:00:00.000Z",
-      "modifiedBy": "modifiedBy.dkqzw@example.org"
-    },
-    {
-      "ID": "22803117-5009-4132-b278-d0a429bcb73b",
-      "skill": {
-        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
-      },
-      "level": "ADVANCED",
-      "createdAt": "2019-11-21T00:00:00.000Z",
-      "createdBy": "createdBy.dkqzx@example.net",
-      "modifiedAt": "2003-07-02T00:00:00.000Z",
-      "modifiedBy": "modifiedBy.dkqzx@example.com"
-    }
-  ],
-  "createdAt": "2005-06-10T00:00:00.000Z",
-  "createdBy": "createdBy.7bnbg@example.net",
-  "modifiedAt": "2003-01-11T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.7bnbg@example.org"
+  "department_ID": "11111111-1111-1111-1111-111111111111"
 }
 
 
-### Employees
-# @name Employees_PATCH
-PATCH {{server}}/employee/Employees/12300748-772d-4453-a731-bf58f2f65175
+### =========================================================
+### 5. Normal CRUDQ Create Employee - Success Test
+### This should generate employeeCode automatically
+### This should NOT assign laptop automatically
+### This should NOT assign default skill automatically
+### =========================================================
+
+### Create Employee - Valid Normal CRUDQ Create
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "12300748-772d-4453-a731-bf58f2f65175",
-  "employeeCode": "mployeeCode-12300748",
-  "name": "name-12300748",
-  "email": "email-12300748",
-  "designation": "designation-12300748",
-  "salary": 5675065424.19,
-  "status": "INACTIVE",
-  "department": {
-    "ID": "17482886-d4eb-44f5-9b91-53b5c14dffd5"
-  },
-  "laptop": {
-    "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48"
-  },
-  "skillAssignments": [
-    {
-      "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
-      "skill": {
-        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
-      },
-      "level": "BEGINNER",
-      "createdAt": "2005-10-16T00:00:00.000Z",
-      "createdBy": "createdBy.dkqzw@example.net",
-      "modifiedAt": "2018-05-13T00:00:00.000Z",
-      "modifiedBy": "modifiedBy.dkqzw@example.org"
-    },
-    {
-      "ID": "22803117-5009-4132-b278-d0a429bcb73b",
-      "skill": {
-        "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
-      },
-      "level": "ADVANCED",
-      "createdAt": "2019-11-21T00:00:00.000Z",
-      "createdBy": "createdBy.dkqzx@example.net",
-      "modifiedAt": "2003-07-02T00:00:00.000Z",
-      "modifiedBy": "modifiedBy.dkqzx@example.com"
-    }
-  ],
-  "createdAt": "2005-06-10T00:00:00.000Z",
-  "createdBy": "createdBy.7bnbg@example.net",
-  "modifiedAt": "2003-01-11T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.7bnbg@example.org"
+  "name": "Ravi Normal",
+  "email": "ravi.normal@company.com",
+  "designation": "Developer",
+  "salary": 45000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
 }
 
 
-### Employees
-# @name Employees_DELETE
-DELETE {{server}}/employee/Employees/12300748-772d-4453-a731-bf58f2f65175
+### Verify Employees After Normal Create
+GET {{baseUrl}}/Employees?$expand=department,laptop,skillAssignments($expand=skill)
+
+
+### =========================================================
+### 6. Salary Category Virtual Field Test
+### This will trigger after READ Employees handler
+### =========================================================
+
+### Read Employees and Verify salaryCategory
+GET {{baseUrl}}/Employees
+
+
+### Create LOW Salary Category Employee
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
-
-
-### CompanyLaptops
-# @name CompanyLaptops_GET
-GET {{server}}/employee/CompanyLaptops
-Authorization: Basic {{username}}:{{password}}
-
-
-### CompanyLaptops
-# @name CompanyLaptops_POST
-POST {{server}}/employee/CompanyLaptops
-Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48",
-  "serialNo": "serialNo-4205737",
-  "brand": "brand-4205737",
-  "model": "model-4205737",
-  "status": "AVAILABLE",
-  "createdAt": "2002-09-05T00:00:00.000Z",
-  "createdBy": "createdBy.2i561@example.org",
-  "modifiedAt": "2006-03-16T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.2i561@example.com"
+  "name": "Low Category Employee",
+  "email": "low.category@company.com",
+  "designation": "Consultant",
+  "salary": 40000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
 }
 
 
-### CompanyLaptops
-# @name CompanyLaptops_PATCH
-PATCH {{server}}/employee/CompanyLaptops/42057377-92ed-4b20-ae7a-5f4d6dbbbd48
+### Create MEDIUM Salary Category Employee
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "42057377-92ed-4b20-ae7a-5f4d6dbbbd48",
-  "serialNo": "serialNo-4205737",
-  "brand": "brand-4205737",
-  "model": "model-4205737",
-  "status": "AVAILABLE",
-  "createdAt": "2002-09-05T00:00:00.000Z",
-  "createdBy": "createdBy.2i561@example.org",
-  "modifiedAt": "2006-03-16T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.2i561@example.com"
+  "name": "Medium Category Employee",
+  "email": "medium.category@company.com",
+  "designation": "Consultant",
+  "salary": 60000,
+  "department_ID": "11111111-1111-1111-1111-111111111111"
 }
 
 
-### CompanyLaptops
-# @name CompanyLaptops_DELETE
-DELETE {{server}}/employee/CompanyLaptops/42057377-92ed-4b20-ae7a-5f4d6dbbbd48
+### Create HIGH Salary Category Employee
+POST {{baseUrl}}/Employees
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
-
-
-### EmployeeSkillAssignments
-# @name EmployeeSkillAssignments_GET
-GET {{server}}/employee/EmployeeSkillAssignments
-Authorization: Basic {{username}}:{{password}}
-
-
-### EmployeeSkillAssignments
-# @name EmployeeSkillAssignments_POST
-POST {{server}}/employee/EmployeeSkillAssignments
-Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
-  "skill": {
-    "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
-  },
-  "level": "BEGINNER",
-  "createdAt": "2005-10-16T00:00:00.000Z",
-  "createdBy": "createdBy.dkqzw@example.net",
-  "modifiedAt": "2018-05-13T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.dkqzw@example.org"
+  "name": "High Category Employee",
+  "email": "high.category@company.com",
+  "designation": "Manager",
+  "salary": 90000,
+  "department_ID": "33333333-3333-3333-3333-333333333333"
 }
 
 
-### EmployeeSkillAssignments
-# @name EmployeeSkillAssignments_PATCH
-PATCH {{server}}/employee/EmployeeSkillAssignments/22803116-e471-4714-9d5d-a80d7fb51079
+### Verify Salary Categories
+GET {{baseUrl}}/Employees
+
+
+### =========================================================
+### 7. Function - Get Active Employee Count
+### This is read-only calculated/reporting operation
+### =========================================================
+
+### Get Active Employee Count
+GET {{baseUrl}}/getEmployeeActiveCount()
+
+
+### =========================================================
+### 8. Function - Get Employee Summary
+### Use existing employee ID from seed data
+### =========================================================
+
+### Get Employee Summary
+GET {{baseUrl}}/getEmployeeSummary(employeeID=e1111111-1111-1111-1111-111111111111)
+
+
+### Get Employee Summary - Invalid Employee ID
+GET {{baseUrl}}/getEmployeeSummary(employeeID=99999999-9999-9999-9999-999999999999)
+
+
+### =========================================================
+### 9. Action - Block Employee
+### This changes employee status to BLOCKED
+### =========================================================
+
+### Block Employee
+POST {{baseUrl}}/blockEmployee
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "22803116-e471-4714-9d5d-a80d7fb51079",
-  "skill": {
-    "ID": "13418272-2d44-4fe0-8094-50e2626116c0"
-  },
-  "level": "BEGINNER",
-  "createdAt": "2005-10-16T00:00:00.000Z",
-  "createdBy": "createdBy.dkqzw@example.net",
-  "modifiedAt": "2018-05-13T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.dkqzw@example.org"
+  "employeeID": "e2222222-2222-2222-2222-222222222222"
 }
 
 
-### EmployeeSkillAssignments
-# @name EmployeeSkillAssignments_DELETE
-DELETE {{server}}/employee/EmployeeSkillAssignments/22803116-e471-4714-9d5d-a80d7fb51079
+### Verify Blocked Employee
+GET {{baseUrl}}/Employees(e2222222-2222-2222-2222-222222222222)
+
+
+### Try Blocking Same Employee Again
+POST {{baseUrl}}/blockEmployee
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
-
-
-### Skills
-# @name Skills_GET
-GET {{server}}/employee/Skills
-Authorization: Basic {{username}}:{{password}}
-
-
-### Skills
-# @name Skills_POST
-POST {{server}}/employee/Skills
-Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "13418272-2d44-4fe0-8094-50e2626116c0",
-  "skillCode": "skillCode-13418272",
-  "name": "name-13418272",
-  "category": "category-13418272",
-  "createdAt": "2014-07-06T00:00:00.000Z",
-  "createdBy": "createdBy.7zlls@example.org",
-  "modifiedAt": "2006-04-07T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.7zlls@example.com"
+  "employeeID": "e2222222-2222-2222-2222-222222222222"
 }
 
 
-### Skills
-# @name Skills_PATCH
-PATCH {{server}}/employee/Skills/13418272-2d44-4fe0-8094-50e2626116c0
+### Block Employee - Invalid Employee ID
+POST {{baseUrl}}/blockEmployee
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "ID": "13418272-2d44-4fe0-8094-50e2626116c0",
-  "skillCode": "skillCode-13418272",
-  "name": "name-13418272",
-  "category": "category-13418272",
-  "createdAt": "2014-07-06T00:00:00.000Z",
-  "createdBy": "createdBy.7zlls@example.org",
-  "modifiedAt": "2006-04-07T00:00:00.000Z",
-  "modifiedBy": "modifiedBy.7zlls@example.com"
+  "employeeID": "99999999-9999-9999-9999-999999999999"
 }
 
 
-### Skills
-# @name Skills_DELETE
-DELETE {{server}}/employee/Skills/13418272-2d44-4fe0-8094-50e2626116c0
-Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
+### =========================================================
+### 10. Action - Onboard Employee
+### Business Process:
+### 1. Validate employee
+### 2. Validate department
+### 3. Find available laptop
+### 4. Create employee
+### 5. Update laptop status as ASSIGNED
+### 6. Assign default skill SKILL_CAP
+### 7. Return created employee
+### =========================================================
+
+### Before Onboarding - Check Available Laptops
+GET {{baseUrl}}/CompanyLaptops?$filter=status eq 'AVAILABLE'
 
 
-### blockEmployee
-# @name blockEmployee_POST
-POST {{server}}/employee/blockEmployee
+### Before Onboarding - Check Skills
+GET {{baseUrl}}/Skills
+
+
+### Onboard Employee - Success
+POST {{baseUrl}}/onboardEmployee
 Content-Type: application/json
-Authorization: Basic {{username}}:{{password}}
 
 {
-  "employeeID": "13751334-e0d3-4ec7-8a8e-ee24a2020267"
+  "name": "Meena Onboard",
+  "email": "meena.onboard@company.com",
+  "designation": "Developer",
+  "salary": 50000,
+  "departmentId": "11111111-1111-1111-1111-111111111111"
 }
+
+
+### After Onboarding - Verify Employees with Department, Laptop and Skills
+GET {{baseUrl}}/Employees?$expand=department,laptop,skillAssignments($expand=skill)
+
+
+### After Onboarding - Verify Laptop Status Changed to ASSIGNED
+GET {{baseUrl}}/CompanyLaptops
+
+
+### After Onboarding - Verify Employee Skill Assignment Created
+GET {{baseUrl}}/EmployeeSkillAssignments?$expand=employee,skill
+
+
+### =========================================================
+### 11. Onboard Employee - Validation Tests
+### =========================================================
+
+### Onboard Employee - Missing Name
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "email": "missing.name.onboard@company.com",
+  "designation": "Developer",
+  "salary": 50000,
+  "departmentId": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Onboard Employee - Missing Email
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "name": "Missing Email Onboard",
+  "designation": "Developer",
+  "salary": 50000,
+  "departmentId": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Onboard Employee - Non Company Email
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "name": "Invalid Email Onboard",
+  "email": "invalid.onboard@gmail.com",
+  "designation": "Developer",
+  "salary": 50000,
+  "departmentId": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Onboard Employee - Developer Salary Less Than 30000
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "name": "Low Salary Onboard",
+  "email": "low.salary.onboard@company.com",
+  "designation": "Developer",
+  "salary": 25000,
+  "departmentId": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### Onboard Employee - Missing Department ID
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "name": "Missing Department Onboard",
+  "email": "missing.department@company.com",
+  "designation": "Developer",
+  "salary": 50000
+}
+
+
+### Onboard Employee - Invalid Department ID
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "name": "Invalid Department Onboard",
+  "email": "invalid.department@company.com",
+  "designation": "Developer",
+  "salary": 50000,
+  "departmentId": "99999999-9999-9999-9999-999999999999"
+}
+
+
+### =========================================================
+### 12. Onboard Employee - No Available Laptop Scenario
+### Run this only after all laptops are already ASSIGNED
+### =========================================================
+
+### Check Available Laptops
+GET {{baseUrl}}/CompanyLaptops?$filter=status eq 'AVAILABLE'
+
+
+### Onboard Employee - Expected to Fail if No Laptop Available
+POST {{baseUrl}}/onboardEmployee
+Content-Type: application/json
+
+{
+  "name": "No Laptop Employee",
+  "email": "no.laptop@company.com",
+  "designation": "Consultant",
+  "salary": 55000,
+  "departmentId": "11111111-1111-1111-1111-111111111111"
+}
+
+
+### =========================================================
+### 13. External Employee Info Placeholder
+### To be enhanced later with external API integration
+### =========================================================
+
+### Get External Employee Info
+GET {{baseUrl}}/getExternalEmployeeInfo(employeeID=e1111111-1111-1111-1111-111111111111)
+
+
+### Get External Employee Info - Invalid Employee ID
+GET {{baseUrl}}/getExternalEmployeeInfo(employeeID=99999999-9999-9999-9999-999999999999)
+
+
+### =========================================================
+### 14. Final Verification
+### =========================================================
+
+### Final Employees View
+GET {{baseUrl}}/Employees?$expand=department,laptop,skillAssignments($expand=skill)
+
+
+### Final Laptops View
+GET {{baseUrl}}/CompanyLaptops
+
+
+### Final Skill Assignments View
+GET {{baseUrl}}/EmployeeSkillAssignments?$expand=employee,skill
+
+
+### Final Active Employee Count
+GET {{baseUrl}}/getEmployeeActiveCount()
