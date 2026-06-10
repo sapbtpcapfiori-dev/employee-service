@@ -1,9 +1,22 @@
 using { com.company.hr.employeemanagement as db } from '../db/schema';
 
 @path: '/employee'
+@(requires : 'authenticated-user')
 service EmployeeService {
 
+
+@restrict : [
+    {
+        grant : 'READ',
+        to : ['HRAdmin', 'HRManager', 'EmployeeViewer']
+    },
+    {
+        grant : ['CREATE', 'UPDATE', 'DELETE'],
+        to : 'HRAdmin'
+    }
+]
     entity Departments as projection on db.Departments;
+
 
     entity CompanyLaptops as projection on db.CompanyLaptops;
 
@@ -11,6 +24,17 @@ service EmployeeService {
         *,
         email @mandatory,
         virtual salaryCategory : String
+    };
+    @cds.redirection.target
+    @readonly
+    @requires : ['HRAmin', 'HRManager', 'EmployeeViewer']
+    entity EmployeesDirectory as projection on db.Employees{
+             ID,
+             employeeCode,
+             name,
+             designation,
+             status,
+             department
     };
 
     entity Skills as projection on db.Skills;

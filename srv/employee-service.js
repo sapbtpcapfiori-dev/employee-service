@@ -37,6 +37,7 @@ module.exports = class EmployeeService extends cds.ApplicationService {
       Read-only calculated operation.
     */
     this.on('getEmployeeActiveCount', async () => {
+      
       const activeEmployees = await SELECT
         .from(Employees)
         .where({ status: 'ACTIVE' })
@@ -78,11 +79,12 @@ module.exports = class EmployeeService extends cds.ApplicationService {
         .from(EmployeeSkillAssignments)
         .where({ employee_ID: employeeID })
 
+
       return {
         employeeCode: employee.employeeCode,
         name: employee.name,
         email: employee.email,
-        department: employee.department?.name || 'Not Assigned',
+       department: employee.department?.name || 'Not Assigned',
         skillCount: String(skillAssignments.length),
         laptopStatus: employee.laptop?.status || 'Not Assigned'
       }

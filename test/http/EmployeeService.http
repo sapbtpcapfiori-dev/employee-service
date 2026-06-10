@@ -218,7 +218,7 @@ Content-Type: application/json
 
 
 ### Verify Salary Categories
-GET {{baseUrl}}/Employees
+GET {{baseUrl}}/Employee
 
 
 ### =========================================================

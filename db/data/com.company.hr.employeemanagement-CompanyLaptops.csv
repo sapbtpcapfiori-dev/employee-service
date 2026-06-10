@@ -1,6 +1,11 @@
 ID,serialNo,brand,model,status,createdAt,createdBy,modifiedAt,modifiedBy
-bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,LTP1001,Dell,Latitude 5420,ASSIGNED
-cccccccc-cccc-cccc-cccc-cccccccccccc,LTP1002,HP,EliteBook 840,AVAILABLE
-dddddddd-dddd-dddd-dddd-dddddddddddd,LTP1003,Lenovo,ThinkPad T14,AVAILABLE
-eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,LTP1004,Apple,MacBook Pro 14,ASSIGNED
-ffffffff-ffff-ffff-ffff-ffffffffffff,LTP1005,Dell,Precision 5570,REPAIR
+20451921-fbc4-49d1-9387-1c626e0479e9,serialNo-2045192,brand-2045192,model-2045192,AVAILABLE,2007-02-10T00:00:00.000Z,createdBy.17u2w@example.com,2005-05-09T00:00:00.000Z,modifiedBy.17u2w@example.com
+14354051-12fd-419f-9068-5ea4e32fdf00,serialNo-14354051,brand-14354051,model-14354051,AVAILABLE,2003-01-07T00:00:00.000Z,createdBy.8jnnn@example.com,2018-01-29T00:00:00.000Z,modifiedBy.8jnnn@example.net
+14354052-ad26-4e7f-a12d-fd485801568e,serialNo-14354052,brand-14354052,model-14354052,ASSIGNED,2004-04-17T00:00:00.000Z,createdBy.8jnno@example.com,2021-08-15T00:00:00.000Z,modifiedBy.8jnno@example.org
+14354053-eeab-4720-8158-38f74cdba0c7,serialNo-14354053,brand-14354053,model-14354053,REPAIR,2006-07-04T00:00:00.000Z,createdBy.8jnnp@example.net,2000-07-07T00:00:00.000Z,modifiedBy.8jnnp@example.org
+14354054-f542-45c9-8acb-10999ba90aa6,serialNo-14354054,brand-14354054,model-14354054,ASSIGNED,2021-10-14T00:00:00.000Z,createdBy.8jnnq@example.org,2020-09-10T00:00:00.000Z,modifiedBy.8jnnq@example.net
+14354055-44b4-47de-be46-ee21a1148503,serialNo-14354055,brand-14354055,model-14354055,ASSIGNED,2006-05-12T00:00:00.000Z,createdBy.8jnnr@example.org,2016-04-30T00:00:00.000Z,modifiedBy.8jnnr@example.org
+14354056-2794-4e5a-9ff8-d2ec18b856ce,serialNo-14354056,brand-14354056,model-14354056,AVAILABLE,2022-04-26T00:00:00.000Z,createdBy.8jnns@example.net,2003-11-16T00:00:00.000Z,modifiedBy.8jnns@example.com
+14354057-55f6-452e-9f98-5a0355e5f7d6,serialNo-14354057,brand-14354057,model-14354057,REPAIR,2014-08-18T00:00:00.000Z,createdBy.8jnnt@example.org,2003-06-20T00:00:00.000Z,modifiedBy.8jnnt@example.com
+14354058-509f-4def-93a0-9053580fb85e,serialNo-14354058,brand-14354058,model-14354058,REPAIR,2006-09-30T00:00:00.000Z,createdBy.8jnnu@example.org,2022-09-25T00:00:00.000Z,modifiedBy.8jnnu@example.net
+14354059-5688-4a0c-886c-1e267b613d01,serialNo-14354059,brand-14354059,model-14354059,ASSIGNED,2021-01-06T00:00:00.000Z,createdBy.8jnnv@example.net,2010-10-17T00:00:00.000Z,modifiedBy.8jnnv@example.com

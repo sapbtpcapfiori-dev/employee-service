@@ -1,4 +1,11 @@
 ID,skillCode,name,category,createdAt,createdBy,modifiedAt,modifiedBy
-s1111111-1111-1111-1111-111111111111,SKILL_CAP,SAP CAP,Backend 
-s2222222-2222-2222-2222-222222222222,SKILL_UI5,SAP UI5,Frontend 
-s3333333-3333-3333-3333-333333333333,SKILL_HANA,SAP HANA Cloud,Database
+23374474-19af-4039-b2ad-703fc94c8da0,skillCode-2337447,name-2337447,category-2337447,2012-04-27T00:00:00.000Z,createdBy.1e3l3@example.net,2017-07-24T00:00:00.000Z,modifiedBy.1e3l3@example.com
+9930575f-acee-4bea-8288-95b3f82e4441,skillCode-9930575,name-9930575,category-9930575,2006-11-16T00:00:00.000Z,createdBy.5wuhb@example.org,2008-05-04T00:00:00.000Z,modifiedBy.5wuhb@example.org
+99305766-9476-4f33-b1f2-e4356fa06e1d,skillCode-9930576,name-9930576,category-9930576,2007-03-08T00:00:00.000Z,createdBy.5wuhc@example.net,2013-03-15T00:00:00.000Z,modifiedBy.5wuhc@example.net
+9930577d-82a2-491f-bcb7-6f1e3045f3d7,skillCode-9930577,name-9930577,category-9930577,2010-10-03T00:00:00.000Z,createdBy.5wuhd@example.org,2017-05-10T00:00:00.000Z,modifiedBy.5wuhd@example.org
+9930578d-3eb6-4327-802a-9b1549f6f940,skillCode-9930578,name-9930578,category-9930578,2002-01-08T00:00:00.000Z,createdBy.5wuhe@example.org,2018-01-27T00:00:00.000Z,modifiedBy.5wuhe@example.com
+99305796-74dd-4b97-9931-f4e3c3f2135b,skillCode-9930579,name-9930579,category-9930579,2012-09-02T00:00:00.000Z,createdBy.5wuhf@example.com,2006-10-15T00:00:00.000Z,modifiedBy.5wuhf@example.com
+99305808-40f0-41a2-b08d-b14564899a34,skillCode-9930580,name-9930580,category-9930580,2004-08-05T00:00:00.000Z,createdBy.5wuhg@example.net,2000-01-05T00:00:00.000Z,modifiedBy.5wuhg@example.org
+99305810-bc92-4be9-971f-33f40da5acb1,skillCode-9930581,name-9930581,category-9930581,2000-02-27T00:00:00.000Z,createdBy.5wuhh@example.org,2007-05-16T00:00:00.000Z,modifiedBy.5wuhh@example.net
+99305821-70d8-430d-9cfc-59e3e0db4d33,skillCode-9930582,name-9930582,category-9930582,2021-01-16T00:00:00.000Z,createdBy.5wuhi@example.com,2005-05-01T00:00:00.000Z,modifiedBy.5wuhi@example.org
+9930583c-1e0b-4f73-b757-229505c3cbf4,skillCode-9930583,name-9930583,category-9930583,2017-04-29T00:00:00.000Z,createdBy.5wuhj@example.org,2002-04-21T00:00:00.000Z,modifiedBy.5wuhj@example.com

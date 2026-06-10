@@ -1,0 +1,23 @@
+### =========================================================
+### Employee Management CAP Backend - Consolidated Test File
+### Service Base URL
+### =========================================================
+
+@baseUrl = http://localhost:4004/employee
+@adminAuth= Authorization: Basic hradmin:admin
+@managerAuth= Authorization: Basic hrmanager:manager
+@viewerAuth = Authorization: Basic employee:employee
+
+
+
+###
+GET {{baseUrl}}/Departments
+
+### with credentials
+GET {{baseUrl}}/Departments
+{{managerAuth}}
+
+
+### Employee
+GET {{baseUrl}}/Departments
+{{viewerAuth}}
