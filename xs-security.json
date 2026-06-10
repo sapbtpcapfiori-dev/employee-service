@@ -1,5 +1,43 @@
 {
-  "scopes": [],
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.HRAdmin",
+      "description": "HRAdmin"
+    },
+    {
+      "name": "$XSAPPNAME.HRManager",
+      "description": "HRManager"
+    },
+    {
+      "name": "$XSAPPNAME.EmployeeViewer",
+      "description": "EmployeeViewer"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "HRAdmin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.HRAdmin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "HRManager",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.HRManager"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "EmployeeViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.EmployeeViewer"
+      ],
+      "attribute-references": []
+    }
+  ]
 }

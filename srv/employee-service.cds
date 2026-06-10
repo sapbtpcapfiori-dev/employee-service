@@ -27,7 +27,7 @@ service EmployeeService {
     };
     @cds.redirection.target
     @readonly
-    @requires : ['HRAmin', 'HRManager', 'EmployeeViewer']
+    @requires : ['HRAdmin', 'HRManager', 'EmployeeViewer']
     entity EmployeesDirectory as projection on db.Employees{
              ID,
              employeeCode,
